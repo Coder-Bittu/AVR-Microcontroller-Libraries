@@ -1,5 +1,6 @@
 
 
+
 #define F_CPU 16000000
 
 void USART_begin(long baud){
@@ -99,64 +100,4 @@ int main(){
   
   
 }
-  while(data[c]!='\0'){
-   USART_putc(data[c]);
-    c++;
-  }
-}
 
-
-void USART_println(char* data){
-  USART_print(data);
-  USART_putc('\n');
-}
-
-
-char USART_getc(){
-  while( !((UCSR0A>>RXC0)&1) ){}  // if RXCn is zero , wait.
-   return UDR0;
-}
-
-
-
-char USART_gets(char * data){
-  volatile char ch;
-  int x = 0;
-  while( !((UCSR0A>>RXC0)&1) ){}  // if RXCn is zero , wait.
-  while(x<100){
-    ch = UDR0;
-    if(ch=='\n' || ch=='\0'){
-     break; 
-    }
-    data[x++]=ch;
-  }
-}
-
-
-int main(){
-  
-  USART_begin(9600);
-  
-  
-  char str[100]="ATMega328P USART in pure C!";
-  char input[100];
-  char i;
-  
-  
-  
-  USART_println("Hello There! Please enter your name");
-  USART_print(">>");
-  
-  USART_gets(input);
-  USART_println(input);
-  
-  sprintf(str,"%s %s","Welcome",input);
-  
-  while(1){
-    
-    
-   
-  }
-  
-  
-}
