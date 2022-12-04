@@ -1,0 +1,15 @@
+struct PIN {
+  volatile uint8_t * REG;
+  uint8_t PIN;
+};
+
+
+void ON(struct PIN p)
+{
+  *p.REG = *p.REG | (1<<p.PIN);
+}
+
+void OFF(struct PIN p)
+{
+  *p.REG = *p.REG & (~(1<<p.PIN));
+}
