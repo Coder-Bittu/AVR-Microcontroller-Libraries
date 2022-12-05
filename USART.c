@@ -92,33 +92,3 @@ ISR(USART_RX_vect){
  
 }
 
-
-
-
-
-int main(){
-
-  
-  
-  
-  USART_begin(9600);
-  sei();
-  
-  int c=0;
-  char str[100]="ATMega328P USART in pure C!";
-  char input[100]={0};
-  char i;
-  
-  USART_println(str);
-  USART_print(">> ");
-  
- 
-  
-  while(1){
-    //USART_gets(input);
-    USART_println(cmd);
-    _delay_ms(1000);
-  }
-  
-  
-}
